@@ -40,7 +40,8 @@ export const ProductTable: React.FC<ProductTableProps> = ({
     assignPriority,
     moveProduct,
     deleteProduct,
-    duplicateProduct
+    duplicateProduct,
+    updateProduct
   } = useProducts();
 
   const t = translations[settings.language];
@@ -55,6 +56,9 @@ export const ProductTable: React.FC<ProductTableProps> = ({
   // Quick Inline Priority editing state
   const [editingPriorityId, setEditingPriorityId] = useState<string | null>(null);
   const [priorityInputValue, setPriorityInputValue] = useState<string>('');
+
+  // Status dropdown state
+  const [activeStatusDropdownId, setActiveStatusDropdownId] = useState<string | null>(null);
 
   const statusMap = new Map();
   statuses.forEach((s) => statusMap.set(s.id, s));
@@ -306,36 +310,22 @@ export const ProductTable: React.FC<ProductTableProps> = ({
                     </button>
                   </td>
 
-                  {/* Product Names & Composition */}
-                  <td className="py-2 px-4">
-                    <div className="flex flex-col">
+                  {/* Product Name & Type ONLY */}
+                  <td className="py-2.5 px-4 text-start">
+                    <div className="flex flex-col text-start">
                       <button
+                        type="button"
                         onClick={() => onOpenDetailModal(product)}
                         className="text-start font-bold text-slate-900 dark:text-white hover:text-ymco-primary dark:hover:text-ymco-400 transition-colors cursor-pointer text-xs sm:text-sm line-clamp-1"
                       >
                         {isAr ? product.tradeNameAr : product.tradeNameEn}
                       </button>
 
-                      <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                        <span className="font-semibold text-slate-600 dark:text-slate-300">
-                          {isAr ? product.tradeNameEn : product.tradeNameAr}
-                        </span>
-                        <span>•</span>
-                        <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 rounded text-[10px] text-slate-500">
-                          {product.sku}
-                        </span>
-                        {product.priceFormatted && (
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                            {product.priceFormatted}
-                          </span>
-                        )}
-                      </div>
-
-                      {product.scientificName && (
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 italic line-clamp-1 mt-0.5">
-                          {product.scientificName}
-                        </div>
-                      )}
+                      <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
+                        {isAr
+                          ? (product.dosageFormAr || product.dosageFormEn || 'مستحضر صيدلاني')
+                          : (product.dosageFormEn || product.dosageFormAr || 'Pharmaceutical Form')}
+                      </span>
                     </div>
                   </td>
 
@@ -351,17 +341,92 @@ export const ProductTable: React.FC<ProductTableProps> = ({
                     </div>
                   </td>
 
-                  {/* Product Status */}
-                  <td className="py-2 px-3 text-center">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${statusCfg.badgeClass}`}
-                    >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full mr-1.5 rtl:ml-1.5 rtl:mr-0 shrink-0"
-                        style={{ backgroundColor: statusCfg.color }}
-                      />
-                      <span>{isAr ? statusCfg.labelAr : statusCfg.labelEn}</span>
-                    </span>
+                  {/* Product Status with Interactive Dropdown on Click */}
+                  <td className="py-2 px-3 text-center relative">
+                    <div className="relative inline-block text-start">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (!isViewer) {
+                            setActiveStatusDropdownId(
+                              activeStatusDropdownId === product.id ? null : product.id
+                            );
+                          }
+                        }}
+                        disabled={isViewer}
+                        title={isViewer ? '' : (isAr ? 'انقر لتغيير حالة الصنف' : 'Click to change status')}
+                        className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold border transition-all ${statusCfg.badgeClass} ${
+                          !isViewer ? 'hover:shadow-xs hover:scale-105 cursor-pointer active:scale-95' : 'cursor-default'
+                        }`}
+                      >
+                        <span
+                          className="w-2 h-2 rounded-full mr-1.5 rtl:ml-1.5 rtl:mr-0 shrink-0"
+                          style={{ backgroundColor: statusCfg.color }}
+                        />
+                        <span className="truncate max-w-[120px]">{isAr ? statusCfg.labelAr : statusCfg.labelEn}</span>
+                        {!isViewer && (
+                          <ChevronDown className="w-3 h-3 ml-1 rtl:mr-1 rtl:ml-0 opacity-60" />
+                        )}
+                      </button>
+
+                      {/* Status Dropdown Popover */}
+                      {activeStatusDropdownId === product.id && (
+                        <>
+                          {/* Invisible backdrop */}
+                          <div
+                            className="fixed inset-0 z-40"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveStatusDropdownId(null);
+                            }}
+                          />
+
+                          <div
+                            className="absolute z-50 mt-1.5 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-1.5 animate-scaleUp text-start ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-700/60 mb-1">
+                              {isAr ? 'تغيير حالة الصنف' : 'Change Status'}
+                            </div>
+
+                            <div className="max-h-56 overflow-y-auto py-0.5 space-y-0.5">
+                              {statuses
+                                .filter((s) => s.isActive)
+                                .map((s) => {
+                                  const isCurrent = product.status === s.id;
+                                  return (
+                                    <button
+                                      key={s.id}
+                                      type="button"
+                                      onClick={() => {
+                                        updateProduct({ ...product, status: s.id });
+                                        setActiveStatusDropdownId(null);
+                                      }}
+                                      className={`w-full px-3 py-1.5 text-xs font-semibold flex items-center justify-between transition-colors ${
+                                        isCurrent
+                                          ? 'bg-ymco-50 dark:bg-ymco-950/40 text-ymco-primary font-bold'
+                                          : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60'
+                                      }`}
+                                    >
+                                      <div className="flex items-center space-x-2 rtl:space-x-reverse min-w-0">
+                                        <span
+                                          className="w-2.5 h-2.5 rounded-full shrink-0"
+                                          style={{ backgroundColor: s.color }}
+                                        />
+                                        <span className="truncate">{isAr ? s.labelAr : s.labelEn}</span>
+                                      </div>
+                                      {isCurrent && (
+                                        <Check className="w-3.5 h-3.5 text-ymco-primary shrink-0" />
+                                      )}
+                                    </button>
+                                  );
+                                })}
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </td>
 
                   {/* Ordering Controls & Row Action Menu */}

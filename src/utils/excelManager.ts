@@ -9,7 +9,7 @@ export interface ImportValidationResult {
 }
 
 // 1. Export Products to Excel (.xlsx)
-export const exportProductsToExcel = (products: Product[], filename = 'YMCO_Products_Priority'): void => {
+export const exportProductsToExcel = (products: Product[], filename = 'UMCO_Products_Priority'): void => {
   const exportData = products.map((p) => ({
     'Priority Number': p.priority,
     'SKU / ID': p.sku,
@@ -36,7 +36,7 @@ export const exportProductsToExcel = (products: Product[], filename = 'YMCO_Prod
 
   const worksheet = XLSX.utils.json_to_sheet(exportData);
   const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'YMCO Priority Catalog');
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'UMCO Priority Catalog');
 
   // Column width formatting
   const colWidths = [
@@ -51,7 +51,7 @@ export const exportProductsToExcel = (products: Product[], filename = 'YMCO_Prod
 };
 
 // 2. Export Products to CSV
-export const exportProductsToCSV = (products: Product[], filename = 'YMCO_Products_Priority'): void => {
+export const exportProductsToCSV = (products: Product[], filename = 'UMCO_Products_Priority'): void => {
   const exportData = products.map((p) => ({
     'Priority': p.priority,
     'SKU': p.sku,

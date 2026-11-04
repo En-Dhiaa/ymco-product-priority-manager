@@ -10,3 +10,4 @@ for it in items:
         no_img.append(it)
     print(f"#{it['raw_id']} | {it['name_ar']} | Price: {it['price_str']} | Img: {it['image']} | RawImgs: {it['raw_images']}")
 print(f'Items without image: {len(no_img)}')
+

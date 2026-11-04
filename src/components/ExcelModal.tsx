@@ -41,11 +41,11 @@ export const ExcelModal: React.FC<ExcelModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const handleExportExcel = () => {
-    exportProductsToExcel(products, 'YMCO_Product_Priority_Catalog');
+    exportProductsToExcel(products, 'UMCO_Product_Priority_Catalog');
   };
 
   const handleExportCSV = () => {
-    exportProductsToCSV(products, 'YMCO_Product_Priority_Catalog');
+    exportProductsToCSV(products, 'UMCO_Product_Priority_Catalog');
   };
 
   const handleFileUpload = async (file: File) => {

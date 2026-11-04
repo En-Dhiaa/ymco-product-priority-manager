@@ -70,7 +70,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setImageUrl(productToEdit.imageUrl || '');
       setImagePreview(productToEdit.imageUrl || '');
     } else {
-      setSku(`YMCO-${Date.now().toString().slice(-4)}`);
+      setSku(`UMCO-${Date.now().toString().slice(-4)}`);
       setPriority(products.length + 1);
       setTradeNameEn('');
       setTradeNameAr('');

@@ -73,11 +73,11 @@ interface ProductContextType {
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'ymco_products_catalog_2026_v2',
-  SETTINGS: 'ymco_app_settings_v1',
-  STATUSES: 'ymco_custom_statuses_v1',
-  AUDIT: 'ymco_audit_logs_v1',
-  USER: 'ymco_active_session_user_v1'
+  PRODUCTS: 'umco_products_catalog_2026_v2',
+  SETTINGS: 'umco_app_settings_v2',
+  STATUSES: 'umco_custom_statuses_v2',
+  AUDIT: 'umco_audit_logs_v2',
+  USER: 'umco_active_session_user_v2'
 };
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

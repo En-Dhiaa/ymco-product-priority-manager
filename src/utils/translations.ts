@@ -1,8 +1,8 @@
 export const translations = {
   en: {
-    appTitle: 'YMCO Product Priority Manager',
+    appTitle: 'UMCO Product Priority Manager',
     appSubtitle: 'Enterprise Pharmaceutical Priority & Sequence Control Platform',
-    companyName: 'YMCO Pharmaceutical Industries',
+    companyName: 'UMCO Pharmaceutical Industries',
     searchPlaceholder: 'Search by trade name, scientific name, SKU, indications...',
     filterByStatus: 'All Statuses',
     filterByCategory: 'All Categories',

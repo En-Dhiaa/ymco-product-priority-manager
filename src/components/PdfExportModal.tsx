@@ -19,7 +19,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({ isOpen, onClose 
   const [scope, setScope] = useState<'all' | 'filtered' | 'selected' | 'status'>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('Active');
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
-  const [refNumber, setRefNumber] = useState<string>(settings.pdfRefNumber || 'YMCO-PPL-2026-V1');
+  const [refNumber, setRefNumber] = useState<string>(settings.pdfRefNumber || 'UMCO-PPL-2026-V1');
   const [preparedBy, setPreparedBy] = useState<string>(settings.pdfPreparedBy || 'Supply Chain Management');
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -258,7 +258,7 @@ export const PdfExportModal: React.FC<PdfExportModalProps> = ({ isOpen, onClose 
                 type="text"
                 value={refNumber}
                 onChange={(e) => setRefNumber(e.target.value)}
-                placeholder="e.g. YMCO-PPL-2026-V1"
+                placeholder="e.g. UMCO-PPL-2026-V1"
                 className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-ymco-primary"
               />
             </div>

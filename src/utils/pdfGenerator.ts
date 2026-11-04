@@ -100,13 +100,13 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
         doc.setFont('Helvetica', 'bold');
         doc.setFontSize(14);
         doc.setTextColor(198, 40, 40);
-        doc.text('YMCO PHARMA', 12, 19);
+        doc.text('UMCO PHARMA', 12, 19);
       }
     } else {
       doc.setFont('Helvetica', 'bold');
       doc.setFontSize(14);
       doc.setTextColor(198, 40, 40);
-      doc.text('YMCO PHARMA', 12, 19);
+      doc.text('UMCO PHARMA', 12, 19);
     }
 
     // Header Titles
@@ -130,7 +130,7 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
     doc.setFont('Helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(30, 41, 59);
-    doc.text(`Ref: ${refNumber || settings.pdfRefNumber || 'YMCO-PPL-2026'}`, rightMargin, 16, { align: 'right' });
+    doc.text(`Ref: ${refNumber || settings.pdfRefNumber || 'UMCO-PPL-2026'}`, rightMargin, 16, { align: 'right' });
 
     doc.setFont('Helvetica', 'normal');
     doc.setFontSize(8);
@@ -147,7 +147,7 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
     doc.setFont('Helvetica', 'normal');
     doc.setFontSize(7.5);
     doc.setTextColor(148, 163, 184);
-    doc.text(settings.pdfFooterNoteEn || 'Confidential & Proprietary — Yemen Medical Company (YMCO)', 12, footerY + 1);
+    doc.text(settings.pdfFooterNoteEn || 'Confidential & Proprietary — Yemen Medical Company (UMCO)', 12, footerY + 1);
 
     // Page Number
     doc.setFont('Helvetica', 'bold');
@@ -298,7 +298,7 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
   }
 
   // Download PDF file
-  const filename = `YMCO_Product_Priority_List_${new Date().toISOString().slice(0, 10)}.pdf`;
+  const filename = `UMCO_Product_Priority_List_${new Date().toISOString().slice(0, 10)}.pdf`;
   doc.save(filename);
 };
 

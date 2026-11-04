@@ -1,19 +1,19 @@
-# YMCO Product Priority Manager | نظام إدارة أولويات وترتيب المنتجات الطبية
+# UMCO Product Priority Manager | نظام إدارة أولويات وترتيب المنتجات الطبية
 
 [![Live Platform](https://img.shields.io/badge/Live%20Platform-ymco--priority.surge.sh-dc2626.svg)](https://ymco-priority.surge.sh)
 [![Developer Portfolio](https://img.shields.io/badge/Developer-Eng.%20Dhiaa%20Al--Himyari-2563eb.svg)](https://en-dhiaa.surge.sh/)
-[![YMCO 2026 Catalog](https://img.shields.io/badge/Catalog-59%20Genuine%202026%20Products-059669.svg)](https://ymco-priority.surge.sh)
+[![UMCO 2026 Catalog](https://img.shields.io/badge/Catalog-59%20Genuine%202026%20Products-059669.svg)](https://ymco-priority.surge.sh)
 [![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.0-purple.svg)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8.svg)](https://tailwindcss.com/)
 
-A high-performance enterprise pharmaceutical product priority management web platform engineered for **YMCO (Yemen Modern Pharma Co. / الشركة اليمنية لصناعة وتجارة الأدوية)**. It empowers corporate leadership, supply chain directors, and regulatory teams to organize, sequence, prioritize, audit, and export the official 2026 pharmaceutical catalog.
+A high-performance enterprise pharmaceutical product priority management web platform engineered for **UMCO (Yemen Modern Pharma Co. / الشركة اليمنية لصناعة وتجارة الأدوية)**. It empowers corporate leadership, supply chain directors, and regulatory teams to organize, sequence, prioritize, audit, and export the official 2026 pharmaceutical catalog.
 
 ---
 
 ## 🌐 Production URLs
-- **Independent YMCO Platform:** [https://ymco-priority.surge.sh](https://ymco-priority.surge.sh)
+- **Independent UMCO Platform:** [https://ymco-priority.surge.sh](https://ymco-priority.surge.sh)
 - **Lead Developer Portfolio (م. ضياء الحميري):** [https://en-dhiaa.surge.sh/](https://en-dhiaa.surge.sh/)
 - **GitHub Repository:** [https://github.com/En-Dhiaa/ymco-product-priority-manager](https://github.com/En-Dhiaa/ymco-product-priority-manager)
 
@@ -32,13 +32,13 @@ A high-performance enterprise pharmaceutical product priority management web pla
 - Exact 2026 official approved pricing in Yemeni Rials (**YER**).
 - Real medical photos extracted, cropped, and bound to their corresponding trade records.
 
-### 2. Transparent YMCO Capsule Logo
+### 2. Transparent UMCO Capsule Logo
 - Authentic red pill logo extracted from the company document.
 - Precision flood-fill transparency algorithm applied to remove outer background artifacts while retaining crisp interior typography and vibrant corporate red branding.
 
 ### 3. Re-Engineered Mobile Header UX (Uncrowded & Touch-Optimized)
 - Clean, compact top bar on mobile (< 1024px) featuring:
-  - Scaled YMCO transparent logo.
+  - Scaled UMCO transparent logo.
   - Quick language toggle (`EN` / `عربي`).
   - Quick theme toggle (Sun / Moon).
   - Direct developer portfolio shortcut button (`م. ضياء`).
@@ -63,7 +63,7 @@ A high-performance enterprise pharmaceutical product priority management web pla
 - Powered by `jsPDF` and `jspdf-autotable` (**zero** dependence on `window.print()` or screenshots).
 - **Mode A (Priority Summary):** High-density tabular overview with priority ranks, product thumbnails, names, categories, 2026 prices, and status indicators.
 - **Mode B (Detailed Product Dossier):** Full clinical specification sheets with product images, composition, indications, dosage, storage, 2026 prices, and timestamps.
-- Repeating corporate header with authentic YMCO logo, reference ID, timestamps, and page numbers (`Page X of Y`).
+- Repeating corporate header with authentic UMCO logo, reference ID, timestamps, and page numbers (`Page X of Y`).
 
 ### 6. Excel & CSV Data Management
 - Bi-directional export to `.xlsx` and `.csv` formatted with timestamps and 2026 pricing.
@@ -78,11 +78,11 @@ A high-performance enterprise pharmaceutical product priority management web pla
 ## 📁 Project Architecture
 
 ```
-YMCO Tasks/
+UMCO Tasks/
 ├── public/
 │   ├── images/
-│   │   ├── logos/           # Authentic transparent YMCO corporate pill logo
-│   │   └── products/        # 59 genuine YMCO pharmaceutical product packages
+│   │   ├── logos/           # Authentic transparent UMCO corporate pill logo
+│   │   └── products/        # 59 genuine UMCO pharmaceutical product packages
 │   └── favicon.ico
 ├── src/
 │   ├── components/
@@ -102,7 +102,7 @@ YMCO Tasks/
 │   │   └── ProductContext.tsx       # Comprehensive React Context state engine
 │   ├── data/
 │   │   ├── initialConfig.ts         # Initial statuses, categories, and settings
-│   │   ├── productsData.json        # 59 extracted 2026 YMCO medical products
+│   │   ├── productsData.json        # 59 extracted 2026 UMCO medical products
 │   │   └── productsData.ts          # Strongly typed initial dataset
 │   ├── types.ts                     # TypeScript data interfaces with pricing
 │   ├── utils/
@@ -164,4 +164,4 @@ npx surge dist ymco-priority.surge.sh
 ---
 
 ## 📄 License
-Developed for YMCO (Yemen Medical Company / الشركة اليمنية لصناعة وتجارة الأدوية) by Eng. Dhiaa Al-Himyari. All rights reserved.
+Developed for UMCO (Yemen Medical Company / الشركة اليمنية لصناعة وتجارة الأدوية) by Eng. Dhiaa Al-Himyari. All rights reserved.

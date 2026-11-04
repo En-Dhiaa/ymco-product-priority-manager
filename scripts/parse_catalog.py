@@ -93,3 +93,4 @@ print(f'Total parsed products: {len(products)}')
 with open(r'C:\Users\USER\Downloads\ضياء\AI\UMCO Tasks\parsed_raw_products.json', 'w', encoding='utf-8') as f:
     json.dump(products, f, ensure_ascii=False, indent=2)
 print('Saved to parsed_raw_products.json')
+
