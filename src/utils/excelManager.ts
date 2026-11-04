@@ -23,6 +23,7 @@ export const exportProductsToExcel = (products: Product[], filename = 'YMCO_Prod
     'Concentration': p.concentration,
     'Package Size': p.packageSize,
     'Status': p.status,
+    'Price (2026 YER)': p.priceFormatted || (p.price ? `${p.price} YER` : ''),
     'Indications (English)': p.indicationsEn,
     'Indications (Arabic)': p.indicationsAr,
     'Usage (English)': p.usageEn,
@@ -137,6 +138,8 @@ export const parseAndValidateExcel = async (
             storageAr: row['Storage (Arabic)'] || row['storageAr'] || '',
             imageUrl: row['ImageUrl'] || row['imageUrl'] || './images/logos/ymco-pill-logo.png',
             status: status,
+            price: row['Price (2026 YER)'] ? parseFloat(row['Price (2026 YER)']) : undefined,
+            priceFormatted: row['Price (2026 YER)'] ? `${row['Price (2026 YER)']} YER` : undefined,
             notes: row['Internal Notes'] || row['Notes'] || 'Imported via Excel Batch',
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
@@ -168,3 +171,4 @@ export const parseAndValidateExcel = async (
     reader.readAsArrayBuffer(file);
   });
 };
+

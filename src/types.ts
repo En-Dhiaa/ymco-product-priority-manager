@@ -31,6 +31,9 @@ export interface Product {
   imageUrl: string;
   additionalImages?: string[];
   status: string;
+  price?: number;
+  priceFormatted?: string;
+  priceRaw?: string;
   notes: string;
   createdAt: string;
   updatedAt: string;
@@ -92,3 +95,4 @@ export interface PriorityHistorySnapshot {
   sequence: { id: string; priority: number }[];
   description: string;
 }
+

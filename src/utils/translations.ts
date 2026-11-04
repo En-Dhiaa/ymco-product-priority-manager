@@ -268,3 +268,4 @@ export const translations = {
     dragHint: 'اسحب مقبض أي سطر لإعادة ترتيب أسبقية الصنف فورياً'
   }
 };
+

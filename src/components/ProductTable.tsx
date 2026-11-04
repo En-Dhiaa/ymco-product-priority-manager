@@ -316,7 +316,7 @@ export const ProductTable: React.FC<ProductTableProps> = ({
                         {isAr ? product.tradeNameAr : product.tradeNameEn}
                       </button>
 
-                      <div className="flex items-center space-x-2 rtl:space-x-reverse text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                         <span className="font-semibold text-slate-600 dark:text-slate-300">
                           {isAr ? product.tradeNameEn : product.tradeNameAr}
                         </span>
@@ -324,6 +324,11 @@ export const ProductTable: React.FC<ProductTableProps> = ({
                         <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 rounded text-[10px] text-slate-500">
                           {product.sku}
                         </span>
+                        {product.priceFormatted && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                            {product.priceFormatted}
+                          </span>
+                        )}
                       </div>
 
                       {product.scientificName && (
@@ -476,3 +481,4 @@ export const ProductTable: React.FC<ProductTableProps> = ({
     </div>
   );
 };
+

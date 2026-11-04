@@ -235,7 +235,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   </span>
                 </div>
 
-                <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+                <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+                  <span className="text-emerald-700 dark:text-emerald-300 block font-bold mb-1">
+                    {isAr ? 'السعر المعتمد (2026)' : 'Approved Price (2026)'}
+                  </span>
+                  <span className="font-black text-emerald-800 dark:text-emerald-200 text-sm">
+                    {product.priceFormatted || 'حسب التسعيرة الرسمية'}
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 col-span-2">
                   <span className="text-slate-400 block font-medium mb-1">{t.colPriority}</span>
                   <span className="font-black text-ymco-primary text-sm">
                     #{product.priority} in Sequence
@@ -333,3 +342,4 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     </div>
   );
 };
+

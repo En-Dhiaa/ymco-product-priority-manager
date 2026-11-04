@@ -162,13 +162,13 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
       '', // placeholder for thumbnail image
       `${p.tradeNameEn}\n${p.tradeNameAr}`,
       `${p.categoryEn}\n${p.dosageFormEn || p.concentration}`,
-      p.status,
-      p.sku
+      p.priceFormatted ? `${p.priceFormatted}` : (p.price ? `${p.price} YER` : 'Official'),
+      p.status
     ]);
 
     autoTable(doc, {
       startY: 35,
-      head: [['Priority', 'Photo', 'Product Name (EN / AR)', 'Category & Dosage', 'Status', 'SKU / ID']],
+      head: [['Priority', 'Photo', 'Product Name (EN / AR)', 'Category & Dosage', 'Price (2026)', 'Status']],
       body: tableData,
       theme: 'grid',
       margin: { top: 35, bottom: 18, left: 10, right: 10 },
@@ -190,9 +190,9 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
         0: { cellWidth: 16, halign: 'center', fontStyle: 'bold' },
         1: { cellWidth: 16, halign: 'center' },
         2: { cellWidth: orientation === 'landscape' ? 95 : 62, fontStyle: 'bold' },
-        3: { cellWidth: orientation === 'landscape' ? 80 : 50 },
-        4: { cellWidth: 28, halign: 'center' },
-        5: { cellWidth: 26, halign: 'center', fontSize: 7.5 }
+        3: { cellWidth: orientation === 'landscape' ? 75 : 46 },
+        4: { cellWidth: 26, halign: 'center', fontStyle: 'bold' },
+        5: { cellWidth: 24, halign: 'center' }
       },
       didDrawCell: (data) => {
         // Draw thumbnail in column 1
@@ -235,7 +235,7 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
         `#${p.priority}`,
         '', // Image cell
         `English: ${p.tradeNameEn}\nArabic: ${p.tradeNameAr}\nScientific: ${p.scientificName || 'N/A'}\nSKU: ${p.sku}`,
-        `Category: ${p.categoryEn}\nDosage: ${p.dosageFormEn || 'N/A'}\nConcentration: ${p.concentration || 'N/A'}\nPackage: ${p.packageSize || 'N/A'}`,
+        `Category: ${p.categoryEn}\nDosage: ${p.dosageFormEn || 'N/A'}\nConcentration: ${p.concentration || 'N/A'}\nPrice (2026): ${p.priceFormatted || (p.price ? `${p.price} YER` : 'Official')}\nPackage: ${p.packageSize || 'N/A'}`,
         `Indications: ${p.indicationsEn || p.indicationsAr || 'N/A'}\nUsage: ${p.usageEn || 'As directed by physician'}\nStorage: ${p.storageEn || 'Store below 25°C in dry place'}\nNotes: ${p.notes || 'None'}`,
         p.status
       ]);
@@ -301,3 +301,4 @@ export const generateYmcoPdf = async (options: ExportPdfOptions): Promise<void> 
   const filename = `YMCO_Product_Priority_List_${new Date().toISOString().slice(0, 10)}.pdf`;
   doc.save(filename);
 };
+

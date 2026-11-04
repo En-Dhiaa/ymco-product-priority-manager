@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Settings as SettingsIcon, Save, Image as ImageIcon, Sliders } from 'lucide-react';
+import { X, Settings as SettingsIcon, Save, Image as ImageIcon, Sliders, ExternalLink } from 'lucide-react';
 import { useProducts } from '../context/ProductContext';
 import { translations } from '../utils/translations';
 import { AppSettings } from '../types';
@@ -192,6 +192,27 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
             </div>
           </div>
 
+          {/* Platform Engineering & Attribution */}
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200 block">
+                {isAr ? 'هندسة وبرمجة المنصة' : 'Platform Engineering & Architecture'}
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                {isAr ? 'المهندس ضياء الحميري • Lead Architect & Full-Stack Engineer' : 'Eng. Dhiaa Al-Himyari • Lead Architect & Full-Stack Engineer'}
+              </span>
+            </div>
+            <a
+              href="https://en-dhiaa.surge.sh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-ymco-primary hover:bg-ymco-dark transition-colors shadow-xs"
+            >
+              <span>{isAr ? 'معرض الأعمال' : 'Portfolio'}</span>
+              <ExternalLink className="w-3 h-3 ml-1 rtl:mr-1 rtl:ml-0" />
+            </a>
+          </div>
+
           {/* Save CTA */}
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end space-x-2 rtl:space-x-reverse">
             <button
@@ -216,3 +237,4 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     </div>
   );
 };
+

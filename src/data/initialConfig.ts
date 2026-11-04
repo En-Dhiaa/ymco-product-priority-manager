@@ -118,3 +118,4 @@ export const defaultSettings: AppSettings = {
   autoRenumberOnReorder: true,
   autoSave: true
 };
+

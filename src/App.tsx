@@ -12,6 +12,7 @@ import { StatusManagerModal } from './components/StatusManagerModal';
 import { SettingsModal } from './components/SettingsModal';
 import { AuditHistoryModal } from './components/AuditHistoryModal';
 import { UserRoleModal } from './components/UserRoleModal';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import { Product } from './types';
 
 export const MainContent: React.FC = () => {
@@ -64,20 +65,38 @@ export const MainContent: React.FC = () => {
 
       {/* Corporate Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800 py-6 bg-white dark:bg-slate-900 transition-colors text-xs text-slate-500 dark:text-slate-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-start">
-          <div className="flex items-center space-x-2 rtl:space-x-reverse">
-            <img src="./images/logos/ymco-pill-logo.png" alt="YMCO" className="h-6 w-auto" />
-            <span className="font-semibold text-slate-700 dark:text-slate-300">
-              {isAr ? settings.companyNameAr : settings.companyNameEn}
-            </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-start">
+          <div className="flex items-center space-x-2.5 rtl:space-x-reverse">
+            <img src="./images/logos/ymco-transparent-logo.png" alt="YMCO" className="h-7 w-auto object-contain" />
+            <div>
+              <span className="font-bold text-slate-800 dark:text-slate-200 block">
+                {isAr ? settings.companyNameAr : settings.companyNameEn}
+              </span>
+              <span className="text-[11px] text-slate-400">
+                {isAr ? 'نظام إدارة أولويات المنتجات الصيدلانية • إصدار 2026' : 'YMCO Product Priority Manager • Enterprise 2026'}
+              </span>
+            </div>
           </div>
 
-          <div>
-            <span>YMCO Product Priority Manager • ISO/GMP Compliant Operational Catalog</span>
+          {/* Prominent Lead Developer Credit */}
+          <div className="flex items-center space-x-2 rtl:space-x-reverse px-3.5 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+            <Sparkles className="w-3.5 h-3.5 text-ymco-primary" />
+            <span className="text-slate-600 dark:text-slate-300">
+              {isAr ? 'هندسة وتطوير المنصة:' : 'Platform Architect:'}
+            </span>
+            <a
+              href="https://en-dhiaa.surge.sh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-extrabold text-ymco-primary hover:text-ymco-dark hover:underline inline-flex items-center space-x-1 rtl:space-x-reverse"
+            >
+              <span>{isAr ? 'م. ضياء الحميري' : 'Eng. Dhiaa Al-Himyari'}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
 
           <div className="text-[11px] text-slate-400">
-            <span>Enterprise Release 2026 • Real-Time Dual Persistence</span>
+            <span>ISO 9001 / GMP Compliant • Dual-Storage Engine</span>
           </div>
         </div>
       </footer>
@@ -141,3 +160,4 @@ export const App: React.FC = () => {
 };
 
 export default App;
+

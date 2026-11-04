@@ -73,7 +73,7 @@ interface ProductContextType {
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'ymco_products_catalog_v1',
+  PRODUCTS: 'ymco_products_catalog_2026_v2',
   SETTINGS: 'ymco_app_settings_v1',
   STATUSES: 'ymco_custom_statuses_v1',
   AUDIT: 'ymco_audit_logs_v1',
@@ -668,3 +668,4 @@ export const useProducts = () => {
   if (!context) throw new Error('useProducts must be used within a ProductProvider');
   return context;
 };
+
