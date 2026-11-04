@@ -31,7 +31,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onClose,
   onEdit
 }) => {
-  const { settings, statuses, currentUser, updateProduct } = useProducts();
+  const { 
+    settings, 
+    statuses, 
+    currentUser, 
+    updateProduct, 
+    activeIngredients, 
+    therapeuticCategories, 
+    collections 
+  } = useProducts();
   const t = translations[settings.language];
   const isAr = settings.language === 'ar';
   const isViewer = currentUser.role === 'viewer';
@@ -249,6 +257,60 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <span className="font-black text-ymco-primary text-sm">
                     #{product.priority} in Sequence
                   </span>
+                </div>
+              </div>
+
+              {/* Classification & Collections Linkage */}
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-2.5 text-xs">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  {isAr ? 'التصنيف الصيدلاني والمجموعات' : 'Pharmaceutical Classification & Collections'}
+                </span>
+
+                {/* Active Ingredients */}
+                <div>
+                  <div className="text-[11px] text-slate-500 font-semibold mb-1">
+                    {isAr ? 'المواد الفعالة (APIs):' : 'Active Ingredients (APIs):'}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {product.ingredientIds && product.ingredientIds.length > 0 ? (
+                      product.ingredientIds.map(id => {
+                        const ing = activeIngredients.find(i => i.id === id);
+                        return (
+                          <span key={id} className="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/50 text-blue-700 dark:text-blue-300 font-medium text-[11px]">
+                            {ing ? (isAr ? ing.nameAr : ing.nameEn) : id}
+                          </span>
+                        );
+                      })
+                    ) : (
+                      <span className="text-slate-400 italic text-[11px]">
+                        {product.scientificName || (isAr ? 'غير محدد' : 'Unspecified')}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Assigned Collections */}
+                <div>
+                  <div className="text-[11px] text-slate-500 font-semibold mb-1">
+                    {isAr ? 'المجموعات المنضم إليها هذا الصنف:' : 'Assigned Collections:'}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {collections.filter(c => c.items?.some(it => it.productId === product.id)).map(col => {
+                      const item = col.items.find(it => it.productId === product.id);
+                      return (
+                        <span key={col.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-900/50 text-purple-700 dark:text-purple-300 font-medium text-[11px]">
+                          <span className="w-2 h-2 rounded-full" style={{ backgroundColor: col.color }} />
+                          <span>{isAr ? col.nameAr : col.nameEn}</span>
+                          {item && <strong className="text-purple-900 dark:text-purple-200">#{item.priority}</strong>}
+                        </span>
+                      );
+                    })}
+                    {collections.filter(c => c.items?.some(it => it.productId === product.id)).length === 0 && (
+                      <span className="text-slate-400 italic text-[11px]">
+                        {isAr ? 'غير مدرج في مجموعات مخصصة' : 'Not assigned to any custom collection'}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 

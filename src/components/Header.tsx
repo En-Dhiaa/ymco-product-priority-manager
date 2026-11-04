@@ -24,6 +24,7 @@ interface HeaderProps {
   onOpenSettings: () => void;
   onOpenStatusManager: () => void;
   onOpenUserModal: () => void;
+  onToggleSidebar?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -32,7 +33,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenHistory,
   onOpenSettings,
   onOpenStatusManager,
-  onOpenUserModal
+  onOpenUserModal,
+  onToggleSidebar
 }) => {
   const { settings, currentUser, toggleLanguage, toggleTheme } = useProducts();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,7 +61,16 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between h-16">
           
           {/* Brand & Logo Section */}
-          <div className="flex items-center space-x-2.5 sm:space-x-3 rtl:space-x-reverse min-w-0 shrink-0">
+          <div className="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse min-w-0 shrink-0">
+            {onToggleSidebar && (
+              <button
+                onClick={onToggleSidebar}
+                title={isAr ? 'القائمة الرئيسية والتنقل' : 'Toggle Navigation'}
+                className="p-1.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
+              >
+                <Menu className="w-5 h-5 text-red-600" />
+              </button>
+            )}
             <div className="relative group shrink-0">
               <img
                 src={logoSrc}

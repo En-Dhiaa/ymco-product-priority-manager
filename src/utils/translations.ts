@@ -99,7 +99,7 @@ export const translations = {
     readOnlyNotice: 'You are currently in Viewer mode. Modification features require Editor or Admin permissions.',
 
     // PDF Export
-    pdfExportTitle: 'Generate Professional YMCO Document',
+    pdfExportTitle: 'Generate Professional UMCO Document',
     pdfModeSummary: 'Mode A: Priority Summary (Compact Full Table)',
     pdfModeDetailed: 'Mode B: Detailed Product Dossier (Specs & Images)',
     pdfScopeAll: 'All Products ({count})',
@@ -135,8 +135,8 @@ export const translations = {
   },
   ar: {
     appTitle: 'نظام إدارة أولويات وترتيب المنتجات الطبية',
-    appSubtitle: 'المنصة المؤسسية المتطورة لشركة يمكو لإدارة أسبقية وترتيب الأصناف الدوائية',
-    companyName: 'الشركة اليمنية لصناعة وتجارة الأدوية والمستلزمات الطبية (يمكو)',
+    appSubtitle: 'المنصة المؤسسية المتطورة لشركة الأدوية الحديثة (UMCO) لإدارة أسبقية وترتيب الأصناف الدوائية',
+    companyName: 'شركة الأدوية الحديثة (UMCO) - اليمن',
     searchPlaceholder: 'ابحث بالاسم التجاري، الاسم العلمي، كود الصنف، دواعي الاستعمال...',
     filterByStatus: 'كافة الحالات',
     filterByCategory: 'كافة الأقسام الدوائية',
